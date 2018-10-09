@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+// Variables
+$font-stack: 'Montserrat', sans-serif;
+$primary-color: #fff;
+$primary-bg: #00ddff;
+$border-color: #fff56d;
+
 
 body {
     margin: 0;

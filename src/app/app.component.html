@@ -1,43 +1,11 @@
 <!-- List header here -->
 <div class="an-mask" [class.active]="showmodel">
-	<div class="header">
-		<div class="">
-			<h1>
-				{{ title }}!
-			</h1>
-		</div>
-		
-		<div class="h-status">
-			<div class="hs-link" [class.active]="td" (click)="fetchLists();">To Do</div>
-			<div class="hs-link" [class.active]="!td" (click)="fetchDone();">Completed</div>
-		</div>
-	</div>
+
+    <app-list-header [title]="title"></app-list-header>
+
 	<!-- Checklist body here -->
-	<div class="item-list">
-		<ul>
-			<li *ngFor="let item of incomplelist">
-				{{item.desc}}
-				<label class="container">
-					<input type="checkbox">
-					<span class="checkmark"></span>
-				</label>
-			</li>
-		</ul>
-	</div>
+    <app-list [list]="incompleteList$ | async"></app-list>
+    <app-list [list]="completeList$ | async"></app-list>
 </div>
 
-<div class="add-new">
-	<div (click)="displayModel(true)" [class.active]="showmodel" class="an-item">
-		<div class="ani-symbol">+</div>
-	</div>
-</div>
-
-<div class="ani-form" [class.active]="showmodel">
-	<div class="anif-input">
-		<input [(ngModel)]="inputVal" placeholder="Add New Task">
-		<div>
-			<div (click)="displayModel(false)">Decline</div>
-			<div (click)="itemSubmit();">Accept</div>
-		</div>
-	</div>
-</div>
+<app-an-model [showmodel]="showmodel"></app-an-model>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService, Task } from './task.service';
 import { debug } from 'util';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -9,41 +10,40 @@ import { debug } from 'util';
 })
 export class AppComponent implements OnInit {
 	title = 'To Do List';
-	incomplelist: Task[];
-	completelist: Task[];
+	completelist$: Observable<Task[]>;
+	incompletelist$: Observable<Task[]>;
 	showmodel = false;
-	td = true;
 	inputVal;
+	itemProgress;
+	itemID = 0;
 
 	constructor(public service: TaskService) { }
-
-	displayModel(onoff) {
-		this.showmodel = onoff;
-	}
 
 	//default view
 	ngOnInit() {
 		this.fetchLists();
 	}
 
-	fetchLists() {
-		this.incomplelist = this.service.getIncompleteTasks();
-		this.td = true;
+    displayModel(onoff) {
+		this.showmodel = onoff;
 	}
-	fetchDone() {
-		this.completelist = this.service.getCompleteTasks();
-		this.td = false;
+
+	fetchLists() {
+		this.completelist$ = this.service.getCompleteTasks();
+        this.incompletelist$ = this.service.getIncompleteTasks();
 	}
 
 	itemUpdate(item) {
-
+		this.service.updateTask({...item, done: !item.done})
 	}
 
 	itemSubmit() {
-
-		this.service.addTask({desc: this.inputVal, done: false});
+		
+		this.service.addTask({tid: this.itemID, desc: this.inputVal, done: false});
+		
 		this.displayModel(false);
-		this.fetchLists();
+
 		this.inputVal = undefined;
+		this.itemID++;
 	}
 }
