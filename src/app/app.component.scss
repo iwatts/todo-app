@@ -3,9 +3,88 @@
 
 // Variables
 $font-stack: 'Montserrat', sans-serif;
-$primary-color: #333;
+$primary-color: #fff;
+$primary-bg: #00ddff;
+$border-color: #fff56d;
 
-h1 {
-	font: 34pt $font-stack;
+.header {
+	font-family: $font-stack;
 	color: $primary-color;
+	background-color: $primary-bg;
+	padding: 20px 0px 0px;
+	box-shadow: #777 0px 0px 6px;
+	.h-status {
+		text-align: center;
+		.hs-link {
+			display: inline-block;
+			width: 50%;
+			text-transform: uppercase;
+			padding-bottom: 10px;
+			opacity: 0.8;
+			&.active {
+				border-bottom: 4px $border-color solid;
+				opacity: 1;
+			}
+		}
+	}
+}
+.an-mask {
+	filter: blur(0px);
+	-webkit-transition: 1s -webkit-filter linear;
+	-moz-transition: 1s -moz-filter linear;
+	-moz-transition: 1s filter linear;
+	-ms-transition: 1s -ms-filter linear;
+	-o-transition: 1s -o-filter linear;
+	transition: 1s filter linear, 1s -webkit-filter linear;
+	&.active {
+		filter: blur(5px);
+	}
+}
+.add-new {
+	position: fixed;
+    top: 0px;
+    height: 100%;
+    width: 100%;;	
+	.an-item {
+		box-shadow: #777 0px 0px 6px;
+		border-radius: 50%;
+		display: inline-block;
+		position: fixed;
+		right: 10px;
+		padding: 0px 12px;
+		bottom: 10px;
+		max-height: 200px;
+		background-color: #fff;
+		.ani-symbol {
+			font-weight: bolder;
+			font-size: 32pt;
+			opacity: 1;
+			transition: all 0.5s;
+		}
+		.ani-form {
+			visibility: hidden;
+			opacity: 0;
+			transition: visibility 0s, opacity 0.5s linear;
+			width: 0;
+			height: 0;
+    		overflow: hidden;
+		}
+		&.active {
+			margin: 0 auto;
+			left: 0px;
+			right: 0px;
+			border-radius: 0px;
+			max-width: 80%;
+			top: 20%;
+			.ani-symbol {
+				opacity: 0;
+			}
+			.ani-form {
+				width: auto;
+				height: auto;
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
 }
