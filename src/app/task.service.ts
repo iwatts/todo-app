@@ -22,7 +22,7 @@ export class TaskService {
 	}
 }
 
-interface Task {
+export interface Task {
 	desc:string
 	done:boolean
 }

@@ -30,12 +30,12 @@ $border-color: #fff56d;
 }
 .an-mask {
 	filter: blur(0px);
-	-webkit-transition: 1s -webkit-filter linear;
-	-moz-transition: 1s -moz-filter linear;
-	-moz-transition: 1s filter linear;
-	-ms-transition: 1s -ms-filter linear;
-	-o-transition: 1s -o-filter linear;
-	transition: 1s filter linear, 1s -webkit-filter linear;
+	-webkit-transition: 0.8s -webkit-filter linear;
+	-moz-transition: 0.8s -moz-filter linear;
+	-moz-transition: 0.8s filter linear;
+	-ms-transition: 0.8s -ms-filter linear;
+	-o-transition: 0.8s -o-filter linear;
+	transition: 0.8s filter linear, 0.8s -webkit-filter linear;
 	&.active {
 		filter: blur(5px);
 	}
@@ -43,8 +43,6 @@ $border-color: #fff56d;
 .add-new {
 	position: fixed;
     top: 0px;
-    height: 100%;
-    width: 100%;;	
 	.an-item {
 		box-shadow: #777 0px 0px 6px;
 		border-radius: 50%;
@@ -55,36 +53,96 @@ $border-color: #fff56d;
 		bottom: 10px;
 		max-height: 200px;
 		background-color: #fff;
+		cursor: pointer;
+		opacity: 1;
+		transition: all 0.5s;
 		.ani-symbol {
 			font-weight: bolder;
-			font-size: 32pt;
-			opacity: 1;
-			transition: all 0.5s;
-		}
-		.ani-form {
-			visibility: hidden;
-			opacity: 0;
-			transition: visibility 0s, opacity 0.5s linear;
-			width: 0;
-			height: 0;
-    		overflow: hidden;
+			font-size: 32pt;			
 		}
 		&.active {
-			margin: 0 auto;
-			left: 0px;
-			right: 0px;
-			border-radius: 0px;
-			max-width: 80%;
-			top: 20%;
-			.ani-symbol {
-				opacity: 0;
-			}
-			.ani-form {
-				width: auto;
-				height: auto;
-				visibility: visible;
-				opacity: 1;
-			}
+			opacity: 0;
 		}
 	}
+}
+.ani-form {
+	visibility: hidden;
+	opacity: 0;
+	overflow: hidden;
+	background-color: #fff;
+	box-shadow: #777 0px 0px 6px;
+	margin: 0 auto;
+	left: 0px;
+	right: 0px;
+	max-width: 80%;
+	top: 20%;
+	position: relative;
+	&.active {
+		width: auto;
+		height: auto;
+		visibility: visible;
+		opacity: 1;
+		z-index: 10;
+	}
+}
+
+.item-list {
+	/* Custom Checkmark box*/
+	ul {
+		li {
+			list-style: none;
+			padding: 10px 0px;
+		}
+	}
+	.container {
+		display: block;
+		position: relative;
+		padding-left: 35px;
+		margin-bottom: 12px;
+		cursor: pointer;
+		font-size: 22px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		float: right;
+		input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+			&:checked ~ .checkmark {
+				background-color: #10b7a6;
+				&:after {
+					display: block;
+				}
+			}
+		}
+		.checkmark:after {
+			left: 9px;
+			top: 5px;
+			width: 5px;
+			height: 10px;
+			border: solid white;
+			border-width: 0 3px 3px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+	}
+	.checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 25px;
+		width: 25px;
+		background-color: #eee;
+		&:after {
+			content: "";
+			position: absolute;
+			display: none;
+		}
+	}
+
 }

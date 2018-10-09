@@ -1,5 +1,5 @@
 <!-- List header here -->
-<div class="an-mask">
+<div class="an-mask" [class.active]="showmodel">
 	<div class="header">
 		<div class="">
 			<h1>
@@ -8,39 +8,36 @@
 		</div>
 		
 		<div class="h-status">
-			<div class="hs-link active" (click)="service.getIncompleteTasks();">To Do</div>
-			<div class="hs-link" (click)="service.getCompleteTasks();">Completed</div>
+			<div class="hs-link" [class.active]="td" (click)="fetchLists();">To Do</div>
+			<div class="hs-link" [class.active]="!td" (click)="fetchDone();">Completed</div>
 		</div>
 	</div>
 	<!-- Checklist body here -->
 	<div class="item-list">
-
+		<ul>
+			<li *ngFor="let item of incomplelist">
+				{{item.desc}}
+				<label class="container">
+					<input type="checkbox">
+					<span class="checkmark"></span>
+				</label>
+			</li>
+		</ul>
 	</div>
-	<h2>Here are some links to help you start: </h2>
-	<ul>
-	<li>
-		<h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-	</li>
-	<li>
-		<h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-	</li>
-	<li>
-		<h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-	</li>
-	</ul>
 </div>
 
 <div class="add-new">
-	<div [ngClass]="{'active': toggle}" (click)="clickEvent($event)" class="an-item">
+	<div (click)="displayModel(true)" [class.active]="showmodel" class="an-item">
 		<div class="ani-symbol">+</div>
-		<div class="ani-form">
-			<div class="anif-input">
-				<input placeholder="Add New Task">
-				<div>
-					<div>Decline</div>
-					<div (click)="service.getIncompleteTasks();">Accept</div>
-				</div>
-			</div>
+	</div>
+</div>
+
+<div class="ani-form" [class.active]="showmodel">
+	<div class="anif-input">
+		<input [(ngModel)]="inputVal" placeholder="Add New Task">
+		<div>
+			<div (click)="displayModel(false)">Decline</div>
+			<div (click)="itemSubmit();">Accept</div>
 		</div>
 	</div>
 </div>
