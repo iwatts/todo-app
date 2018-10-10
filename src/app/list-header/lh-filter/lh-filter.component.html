@@ -1,1 +1,3 @@
-<p>Filter</p>
+<div>
+    <div *ngFor="let item of items" (click)="setActive(item)">{{item}}</div>
+</div>

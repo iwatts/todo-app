@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Task, TaskService } from '../../services/task.service';
 
 @Component({
     selector: 'app-lt-task',
     templateUrl: './lt-task.component.html',
     styleUrls: ['./lt-task.component.scss']
 })
-export class LT_TaskComponent implements OnInit {
+export class LT_TaskComponent {
+    @Input() public item: Task[] = [];
 
-    constructor() { }
+    constructor(public service: TaskService) { }
 
-    ngOnInit() {
+    updateTaskStatus(item) {
+        item.done = !item.done;
+        return this.service.updateTaskStatus();
     }
 
 }

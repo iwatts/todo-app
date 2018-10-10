@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { debug } from 'util';
 
+import { TaskService } from './services/task.service';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -8,15 +10,24 @@ import { debug } from 'util';
 })
 
 export class AppComponent implements OnInit {
+    activeList = 'To Do';
 
-    title = 'Hello World List';
-
-    constructor() {
+    constructor(public service: TaskService) {
 
     }
 
     ngOnInit() {
 
     }
+
+    getIncompleteTasks() {
+        return this.service.getIncompleteTasks();
+    }
+
+    getCompleteTasks() {
+        return this.service.getCompleteTasks();
+    }
+
+
 
 }

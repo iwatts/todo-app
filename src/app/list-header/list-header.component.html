@@ -1,3 +1,5 @@
-<h1>List header Section</h1>
-<app-lh-options></app-lh-options>
-<app-lh-filter></app-lh-filter>
+<div class="list-header">
+    <h1>List header Section</h1>
+    <app-lh-options></app-lh-options>
+    <app-lh-filter (select)="onSelect($event)"></app-lh-filter>
+</div>

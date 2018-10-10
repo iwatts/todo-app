@@ -1,8 +1,8 @@
 <div class="blur-mask">
-    <app-list-header></app-list-header>
-    <p>{{ title }}</p>
-    <p>Main Comp</p>
-    <app-list-tasks></app-list-tasks>
+    <app-list-header (selectedList)="activeList=$event"></app-list-header>
+
+    <app-list-tasks [list]="getIncompleteTasks()" *ngIf="activeList=='To Do'"></app-list-tasks>
+    <app-list-tasks [list]="getCompleteTasks()" *ngIf="activeList=='Completed'"></app-list-tasks>
 </div>
 
 <app-list-modal></app-list-modal>

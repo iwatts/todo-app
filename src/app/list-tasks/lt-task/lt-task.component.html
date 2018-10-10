@@ -1,1 +1,5 @@
-<p>Single Task Item</p>
+{{item.description}}
+<label class="container">
+    <input type="checkbox" [checked]="item.done" (click)="updateTaskStatus(item)">
+    <span class="checkmark"></span>
+</label>

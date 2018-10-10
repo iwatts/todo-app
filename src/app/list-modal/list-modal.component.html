@@ -1,1 +1,9 @@
-<div>Modal box!</div>
+<div>
+    <div>
+        <input [(ngModel)]="inputValue" placeholder="Add New Task">
+    </div>
+    <div>
+        <div>Decline</div>
+        <div (click)='submitTask()'>Accept</div>
+    </div>
+</div>
