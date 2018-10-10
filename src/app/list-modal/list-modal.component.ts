@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TaskService, Task } from '../services/task.service';
 
 @Component({
@@ -6,28 +6,30 @@ import { TaskService, Task } from '../services/task.service';
     templateUrl: './list-modal.component.html',
     styleUrls: ['./list-modal.component.scss']
 })
-export class ListModalComponent implements OnInit {
+export class ListModalComponent {
     @Input() public item: Task[] = [];
+    @Output() public closeModal = new EventEmitter;
 
     public inputValue: string;
 
     constructor(public service: TaskService) { }
 
-    ngOnInit() {
-
-    }
-
     clearValue() {
         this.inputValue = undefined;
     }
 
+    onClose() {
+        this.clearValue();
+        this.closeModal.emit();
+    }
+
     submitTask() {
         this.service.addTask({ id: 0, description: this.inputValue, done: false });
-        this.clearValue();
+        this.onClose();
     }
 
     cancelTask() {
-        this.clearValue();
+        this.onClose();
     }
 
 

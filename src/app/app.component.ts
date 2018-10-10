@@ -11,6 +11,7 @@ import { TaskService } from './services/task.service';
 
 export class AppComponent implements OnInit {
     activeList = 'To Do';
+    showModal = false;
 
     constructor(public service: TaskService) {
 
@@ -28,6 +29,9 @@ export class AppComponent implements OnInit {
         return this.service.getCompleteTasks();
     }
 
+    modalDisplay() {
+        this.showModal = !this.showModal;
+    }
 
 
 }

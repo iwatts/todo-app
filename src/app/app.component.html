@@ -5,6 +5,6 @@
     <app-list-tasks [list]="getCompleteTasks()" *ngIf="activeList=='Completed'"></app-list-tasks>
 </div>
 
-<app-list-modal></app-list-modal>
+<app-list-modal *ngIf="showModal" (closeModal)="modalDisplay()"></app-list-modal>
 
-<button>+</button>
+<button (click)="modalDisplay()">+</button>
