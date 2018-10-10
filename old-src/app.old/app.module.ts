@@ -3,22 +3,23 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { TaskService } from './task.service';
 import { ListHeaderComponent } from './list-header/list-header.component';
-import { LH_OptionsComponent } from './list-header/lh-options/lh-options.component';
-import { LH_FilterComponent } from './list-header/lh-filter/lh-filter.component';
-
+import { ListComponent } from './list/list.component';
+import { AnModelComponent } from './an-model/an-model.component'
 
 @NgModule({
     declarations: [
         AppComponent,
         ListHeaderComponent,
-        LH_OptionsComponent,
-        LH_FilterComponent,
+        ListComponent,
+        AnModelComponent
     ],
     imports: [
         BrowserModule,
         FormsModule
     ],
+    providers: [TaskService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

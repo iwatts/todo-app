@@ -1,11 +1,3 @@
-<!-- List header here -->
-<div class="an-mask" [class.active]="showmodel">
-
-    <app-list-header [title]="title"></app-list-header>
-
-	<!-- Checklist body here -->
-    <app-list [list]="incompleteList$ | async"></app-list>
-    <app-list [list]="completeList$ | async"></app-list>
-</div>
-
-<app-an-model [showmodel]="showmodel"></app-an-model>
+<app-list-header></app-list-header>
+<p>{{ title }}</p>
+<p>Main Comp</p>
