@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ListHeaderComponent } from './list-header/list-header.component';
@@ -27,7 +29,10 @@ import { TaskService } from './services/task.service';
     ],
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCheckboxModule
     ],
     providers: [TaskService],
     bootstrap: [AppComponent]
