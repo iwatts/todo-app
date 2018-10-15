@@ -1,9 +1,10 @@
-<div>
+<div class="card-panel">
     <div>
         <input [(ngModel)]="inputValue" placeholder="Add New Task">
     </div>
     <div>
-        <div (click)='cancelTask()'>Decline</div>
-        <div (click)='submitTask()'>Accept</div>
+        <div class="btn-flat right" (click)='cancelTask()'>Decline</div>
+        <div class="btn-flat right cyan-text" (click)='submitTask()'>Accept</div>
     </div>
+    <div class="clear"></div>
 </div>

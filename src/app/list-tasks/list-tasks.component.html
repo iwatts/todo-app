@@ -1,8 +1,9 @@
-<div class="item-list">
-    <h3>Tasks Listed</h3>
-    <ul>
-        <li *ngFor="let item of list">
-            <app-lt-task [item]="item"></app-lt-task>
-        </li>
-    </ul>
+<div class="item-list container">
+    <div class="col s12 m6 offset-m3">
+        <ul>
+            <li *ngFor="let item of list" id="item.description">
+                <app-lt-task [item]="item"></app-lt-task>
+            </li>
+        </ul>
+    </div>
 </div>

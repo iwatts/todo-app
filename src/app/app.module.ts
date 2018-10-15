@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { MaterialAppModule } from './ngmaterial.module';
+
 import { ListHeaderComponent } from './list-header/list-header.component';
 import { LH_OptionsComponent } from './list-header/lh-options/lh-options.component';
 import { LH_FilterComponent } from './list-header/lh-filter/lh-filter.component';
@@ -32,7 +34,8 @@ import { TaskService } from './services/task.service';
         FormsModule,
         BrowserAnimationsModule,
         MatButtonModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MaterialAppModule
     ],
     providers: [TaskService],
     bootstrap: [AppComponent]

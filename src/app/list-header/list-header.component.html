@@ -1,5 +1,9 @@
-<div class="list-header">
-    <h1>List header Section</h1>
-    <app-lh-options></app-lh-options>
-    <app-lh-filter (select)="onSelect($event)"></app-lh-filter>
-</div>
+<nav class="nav-extended cyan">
+    <div class="list-header">
+        <div class="nav-wrapper">
+            <span class="brand-logo left">List header Section</span>
+            <app-lh-options></app-lh-options>
+        </div>
+        <app-lh-filter (select)="onSelect($event)"></app-lh-filter>
+    </div>
+</nav>
