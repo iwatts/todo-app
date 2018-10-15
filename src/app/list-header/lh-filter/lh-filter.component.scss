@@ -1,0 +1,9 @@
+li.tab {
+    opacity: 0.8;
+    transition: all 0.2s;
+    &.active {
+        opacity: 1;
+        background-color: initial;
+        border-bottom: 2px solid #fff56d;
+    }
+}

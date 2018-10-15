@@ -8,9 +8,11 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 export class LH_FilterComponent {
     @Output() public select = new EventEmitter();
     @Input() public items = ['To Do', 'Completed'];
+    activeList = 'To Do';
 
     setActive(item) {
         this.select.emit(item);
+        this.activeList = item;
     }
 
 }

@@ -1,4 +1,4 @@
-<div class="blur-mask">
+<div class="blur-shell" [class.blur-mask]="showModal">
     <app-list-header (selectedList)="activeList=$event"></app-list-header>
 
     <div class="container">
@@ -6,17 +6,19 @@
             <app-list-tasks [list]="getIncompleteTasks()" *ngIf="activeList=='To Do'"></app-list-tasks>
             <app-list-tasks [list]="getCompleteTasks()" *ngIf="activeList=='Completed'"></app-list-tasks>
 
-            <div class="fixed-action-btn">
-                <a href="#modal1" class="btn-floating white right" (click)="modalDisplay()">
-                    <i class="material-icons grey-text text-darken-1">add</i>
-                </a>
-            </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="col m2 offset-m5 s12">
-            <app-list-modal *ngIf="showModal" (closeModal)="modalDisplay()"></app-list-modal>
         </div>
     </div>
+</div>
+
+<div class="container modal-container">
+    <div class="col m2 offset-m5 s12">
+        <app-list-modal *ngIf="showModal" (closeModal)="modalDisplay()"></app-list-modal>
+    </div>
+</div>
+
+<div class="fixed-action-btn" *ngIf="!showModal">
+    <a href="#modal1" class="btn-floating white right" (click)="modalDisplay()">
+        <i class="material-icons grey-text text-darken-1">add</i>
+    </a>
 </div>
