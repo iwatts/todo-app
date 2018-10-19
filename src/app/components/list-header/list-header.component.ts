@@ -10,7 +10,7 @@ export class ListHeaderComponent {
     @Output() public selectedList = new EventEmitter();
     constructor() { }
 
-    onSelect(selectedList) {
+    public onSelect(selectedList) {
         this.selectedList.emit(selectedList);
     }
 }

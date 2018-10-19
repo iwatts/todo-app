@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ToDoActionTypes, ToDoActions } from 'app/actions/to-do.actions';
+import { ToDoActionTypes, ToDoActions } from 'app/store/actions/to-do.actions';
 import { isNgTemplate } from '@angular/compiler';
 
 

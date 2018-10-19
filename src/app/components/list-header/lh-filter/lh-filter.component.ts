@@ -5,12 +5,12 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
     templateUrl: './lh-filter.component.html',
     styleUrls: ['./lh-filter.component.scss']
 })
-export class LH_FilterComponent {
+export class ListHeaderFilterComponent {
     @Output() public select = new EventEmitter();
     @Input() public items = ['To Do', 'Completed'];
-    activeList = 'To Do';
+    public activeList = 'To Do';
 
-    setActive(item) {
+    public setActive(item) {
         this.select.emit(item);
         this.activeList = item;
     }

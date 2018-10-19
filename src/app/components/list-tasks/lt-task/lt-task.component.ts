@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Task, TaskService } from '../../services/task.service';
+import { Task, TaskService } from '../../../services/task.service';
 
 @Component({
     selector: 'app-lt-task',

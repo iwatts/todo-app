@@ -7,18 +7,18 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { MaterialAppModule } from './ngmaterial.module';
 
-import { ListHeaderComponent } from './list-header/list-header.component';
-import { LH_OptionsComponent } from './list-header/lh-options/lh-options.component';
-import { LH_FilterComponent } from './list-header/lh-filter/lh-filter.component';
+import { ListHeaderComponent } from './components/list-header/list-header.component';
+import { LH_OptionsComponent } from './components/list-header/lh-options/lh-options.component';
+import { ListHeaderFilterComponent } from './components/list-header/lh-filter/lh-filter.component';
 
-import { ListTasksComponent } from './list-tasks/list-tasks.component';
-import { ToDoTaskComponent } from './list-tasks/lt-task/lt-task.component';
+import { ListTasksComponent } from './components/list-tasks/list-tasks.component';
+import { ToDoTaskComponent } from './components/list-tasks/lt-task/lt-task.component';
 
-import { ListModalComponent } from './list-modal/list-modal.component';
+import { ListModalComponent } from './components/list-modal/list-modal.component';
 
 import { TaskService } from './services/task.service';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
@@ -28,7 +28,7 @@ import { environment } from '../environments/environment';
         AppComponent,
         ListHeaderComponent,
         LH_OptionsComponent,
-        LH_FilterComponent,
+        ListHeaderFilterComponent,
         ListTasksComponent,
         ToDoTaskComponent,
         ListModalComponent
