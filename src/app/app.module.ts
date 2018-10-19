@@ -12,11 +12,15 @@ import { LH_OptionsComponent } from './list-header/lh-options/lh-options.compone
 import { LH_FilterComponent } from './list-header/lh-filter/lh-filter.component';
 
 import { ListTasksComponent } from './list-tasks/list-tasks.component';
-import { LT_TaskComponent } from './list-tasks/lt-task/lt-task.component';
+import { ToDoTaskComponent } from './list-tasks/lt-task/lt-task.component';
 
 import { ListModalComponent } from './list-modal/list-modal.component';
 
 import { TaskService } from './services/task.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -26,7 +30,7 @@ import { TaskService } from './services/task.service';
         LH_OptionsComponent,
         LH_FilterComponent,
         ListTasksComponent,
-        LT_TaskComponent,
+        ToDoTaskComponent,
         ListModalComponent
     ],
     imports: [
@@ -35,7 +39,9 @@ import { TaskService } from './services/task.service';
         BrowserAnimationsModule,
         MatButtonModule,
         MatCheckboxModule,
-        MaterialAppModule
+        MaterialAppModule,
+        StoreModule.forRoot(reducers, { metaReducers }),
+        !environment.production ? StoreDevtoolsModule.instrument() : []
     ],
     providers: [TaskService],
     bootstrap: [AppComponent]

@@ -6,25 +6,25 @@ import { Injectable } from '@angular/core';
 
 export class TaskService {
 
-    Tasks: Task[] = [];
+    public tasks: Task[] = [];
 
     constructor() {
     }
 
-    getCompleteTasks() {
-        return this.Tasks.filter(task => task.done);
+    public getCompleteTasks() {
+        return this.tasks.filter(task => task.done);
     }
 
-    getIncompleteTasks() {
-        return this.Tasks.filter(task => !task.done);
+    public getIncompleteTasks() {
+        return this.tasks.filter(task => !task.done);
     }
 
-    addTask(task: Task) {
+    public addTask(task: Task) {
         // push new task to incomplete list, getting name from input
-        this.Tasks.push(task);
+        this.tasks.push(task);
     }
 
-    updateTaskStatus() {
+    public updateTaskStatus() {
         // change done status on task
         return this.getIncompleteTasks();
     }

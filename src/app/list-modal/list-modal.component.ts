@@ -1,5 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TaskService, Task } from '../services/task.service';
+import { State } from 'app/reducers';
+import { Store } from '@ngrx/store';
+import { AddToDo } from 'app/actions/to-do.actions';
 
 @Component({
     selector: 'app-list-modal',
@@ -12,23 +15,29 @@ export class ListModalComponent {
 
     public inputValue: string;
 
-    constructor(public service: TaskService) { }
+    constructor(public service: TaskService, private store: Store<State>) { }
 
-    clearValue() {
+    private clearValue() {
         this.inputValue = undefined;
     }
+    private onKeydown(event) {
+        // this.submitTask();
+    }
 
-    onClose() {
+    public onClose() {
         this.clearValue();
         this.closeModal.emit();
     }
 
-    submitTask() {
-        this.service.addTask({ id: 0, description: this.inputValue, done: false });
+    public submitTask(todo : string) {
+        // this.service.addTask({ id: 0, description: this.inputValue, done: false });
+        const task = { id: 0, description: todo, done: false }
+        this.store.dispatch(new AddToDo(task));
+
         this.onClose();
     }
 
-    cancelTask() {
+    public cancelTask() {
         this.onClose();
     }
 

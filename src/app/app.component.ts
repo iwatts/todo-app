@@ -9,27 +9,23 @@ import { TaskService } from './services/task.service';
     styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
-    activeList = 'To Do';
-    showModal = false;
+export class AppComponent {
+    public activeList = 'To Do';
+    public showModal = false;
 
     constructor(public service: TaskService) {
 
     }
 
-    ngOnInit() {
-
-    }
-
-    getIncompleteTasks() {
+    public getIncompleteTasks() {
         return this.service.getIncompleteTasks();
     }
 
-    getCompleteTasks() {
+    public getCompleteTasks() {
         return this.service.getCompleteTasks();
     }
 
-    modalDisplay() {
+    public modalDisplay() {
         this.showModal = !this.showModal;
     }
 

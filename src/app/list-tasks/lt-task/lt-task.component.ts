@@ -6,12 +6,12 @@ import { Task, TaskService } from '../../services/task.service';
     templateUrl: './lt-task.component.html',
     styleUrls: ['./lt-task.component.scss']
 })
-export class LT_TaskComponent {
+export class ToDoTaskComponent {
     @Input() public item: Task[] = [];
 
     constructor(public service: TaskService) { }
 
-    updateTaskStatus(item) {
+    public updateTaskStatus(item) {
         item.done = !item.done;
         return this.service.updateTaskStatus();
     }
