@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TaskService, Task } from '../../services/task.service';
-import { State } from 'app/reducers';
+import { State } from 'app/store/reducers';
 import { Store } from '@ngrx/store';
-import { AddToDo } from 'app/actions/to-do.actions';
+import { AddToDo } from 'app/store/actions/to-do.actions';
 
 @Component({
     selector: 'app-list-modal',

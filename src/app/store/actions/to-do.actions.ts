@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { Task } from 'app/services/task.service';
 
 export enum ToDoActionTypes {
     LoadToDos = '[ToDo] Load ToDos',
@@ -14,19 +15,19 @@ export class LoadToDos implements Action {
 export class AddToDo implements Action {
     public readonly type = ToDoActionTypes.AddToDo;
 
-    constructor(public todo: object) {}
+    constructor(public todo: Task) {}
 }
 
 export class RemoveToDo implements Action {
     public readonly type = ToDoActionTypes.RemoveToDo;
 
-    constructor(public todo: object) {}
+    constructor(public todo: Task) {}
 }
 
 export class ChangeStatusTask implements Action {
     public readonly type = ToDoActionTypes.ChangeStatusTask;
 
-    constructor(public todo: object) {}
+    constructor(public todo: Task) {}
 }
   
 

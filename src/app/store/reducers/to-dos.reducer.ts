@@ -21,6 +21,7 @@ export function todoReducer(state = initialState, action: ToDoActions): ToDoStat
         case ToDoActionTypes.RemoveToDo:
             newState.todos.filter(item => item !== action.todo);
             return newState;
+        
         case ToDoActionTypes.ChangeStatusTask:
             newState.todos
                 .filter(item => item === action.todo)

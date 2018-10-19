@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { TaskService, Task } from '../../services/task.service';
 import { Store } from '@ngrx/store';
-import { State } from 'app/reducers';
+import { State } from 'app/store/reducers';
+import { todoList } from 'app/store/selectors';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-list-tasks',
@@ -10,10 +12,10 @@ import { State } from 'app/reducers';
 })
 export class ListTasksComponent {
 
-    @Input() public list: Task[] = [];
+    @Input() public list$: Observable<Task[]>;
 
     constructor(public service: TaskService, public store : Store<State>) { 
-        store.select(state => state)
+        this.list$ = store.select(todoList);
     }
 
 }
