@@ -1,10 +1,11 @@
 import { Action } from '@ngrx/store';
 import { ToDoActionTypes, ToDoActions } from 'app/store/actions/to-do.actions';
 import { isNgTemplate } from '@angular/compiler';
+import { Task } from 'app/services/task.service';
 
 
 export interface ToDoState {
-    todos: Array<Object>;
+    todos: Array<Task>;
 }
 
 export const initialState: ToDoState = {
