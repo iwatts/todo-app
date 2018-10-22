@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { debug } from 'util';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { TaskService } from './services/task.service';
+import { Observable } from 'rxjs';
+import { IncompleteTask, CompleteTask } from './store/reducers/to-dos.reducer';
+import { completeTasks, incompleteTasks } from './store/selectors';
+
 
 @Component({
     selector: 'app-root',
@@ -10,19 +13,13 @@ import { TaskService } from './services/task.service';
 })
 
 export class AppComponent {
-    public activeList = 'To Do';
     public showModal = false;
+    public completeTasks$: Observable<CompleteTask[]>;
+    public incompleteTasks$: Observable<IncompleteTask[]>;
 
-    constructor(public service: TaskService) {
-
-    }
-
-    public getIncompleteTasks() {
-        return this.service.getIncompleteTasks();
-    }
-
-    public getCompleteTasks() {
-        return this.service.getCompleteTasks();
+    constructor(public store: Store<any>) {
+        this.completeTasks$ = store.select(completeTasks);
+        this.incompleteTasks$ = store.select(incompleteTasks);
     }
 
     public modalDisplay() {

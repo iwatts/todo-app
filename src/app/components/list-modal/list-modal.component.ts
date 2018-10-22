@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { TaskService, Task } from '../../services/task.service';
-import { State } from 'app/store/reducers';
 import { Store } from '@ngrx/store';
+
+import { State } from 'app/store/reducers';
 import { AddToDo } from 'app/store/actions/to-do.actions';
+import { List } from 'app/store/reducers/to-dos.reducer';
 
 @Component({
     selector: 'app-list-modal',
@@ -10,12 +11,12 @@ import { AddToDo } from 'app/store/actions/to-do.actions';
     styleUrls: ['./list-modal.component.scss']
 })
 export class ListModalComponent {
-    @Input() public item: Task[] = [];
+    @Input() public item: List[] = [];
     @Output() public closeModal = new EventEmitter;
 
     public inputValue: string;
 
-    constructor(public service: TaskService, private store: Store<State>) { }
+    constructor(private store: Store<State>) { }
 
     private clearValue() {
         this.inputValue = undefined;
@@ -29,9 +30,9 @@ export class ListModalComponent {
         this.closeModal.emit();
     }
 
-    public submitTask(todo : string) {
-        // this.service.addTask({ id: 0, description: this.inputValue, done: false });
-        const task = { id: 0, description: todo, done: false }
+    public submitTask(inputValue) {
+        const task = { id: null, description: inputValue, done: false as false };
+        // this.service.addTask(task);
         this.store.dispatch(new AddToDo(task));
 
         this.onClose();

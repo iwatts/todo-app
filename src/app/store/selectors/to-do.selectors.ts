@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { ToDoState } from "../reducers/to-dos.reducer";
+import { ToDoState, CompleteTask, IncompleteTask } from "../reducers/to-dos.reducer";
 
 export const todoState = createFeatureSelector<ToDoState>('todos');
-export const todoList = createSelector(todoState, state => state.todos);
+export const completeTasks = createSelector(todoState, state => state.completeTasks);
+export const incompleteTasks = createSelector(todoState, state => state.incompleteTasks);

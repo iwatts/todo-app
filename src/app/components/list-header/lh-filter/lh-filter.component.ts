@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { TaskLists } from 'app/store/reducers';
+
 
 @Component({
     selector: 'app-lh-filter',
@@ -7,8 +9,8 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 })
 export class ListHeaderFilterComponent {
     @Output() public select = new EventEmitter();
-    @Input() public items = ['To Do', 'Completed'];
-    public activeList = 'To Do';
+    @Input() public items = [TaskLists.incomplete, TaskLists.completed];
+    public activeList = TaskLists.incomplete;
 
     public setActive(item) {
         this.select.emit(item);

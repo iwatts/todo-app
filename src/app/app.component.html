@@ -3,10 +3,8 @@
 
     <div class="container">
         <div class="col m8 offset-m2 s12">
-            <app-list-tasks [list]="getIncompleteTasks()" *ngIf="activeList=='To Do'"></app-list-tasks>
-            <app-list-tasks [list]="getCompleteTasks()" *ngIf="activeList=='Completed'"></app-list-tasks>
-
-
+            <app-list-tasks [list]="incompleteTasks$ | async"></app-list-tasks>
+            <app-list-tasks [list]="completeTasks$ | async"></app-list-tasks>
         </div>
     </div>
 </div>

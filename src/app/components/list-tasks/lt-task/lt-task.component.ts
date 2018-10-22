@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Task, TaskService } from '../../../services/task.service';
+import { Task } from 'app/store/reducers/to-dos.reducer';
+import { Store } from '@ngrx/store';
+import { ChangeStatusTask } from 'app/store/actions/to-do.actions';
 
 @Component({
     selector: 'app-lt-task',
@@ -7,13 +9,14 @@ import { Task, TaskService } from '../../../services/task.service';
     styleUrls: ['./lt-task.component.scss']
 })
 export class ToDoTaskComponent {
-    @Input() public item: Task[] = [];
+    @Input() public item: Task;
 
-    constructor(public service: TaskService) { }
+    constructor(public store: Store<any>) { }
 
     public updateTaskStatus(item) {
-        item.done = !item.done;
-        return this.service.updateTaskStatus();
+        // item.done = !item.done;
+        // return this.service.updateTaskStatus();
+        this.store.dispatch(new ChangeStatusTask(item));
     }
 
 }
