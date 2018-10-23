@@ -1,27 +1,27 @@
 import { Action } from '@ngrx/store';
-import { List, IncompleteTask } from '../reducers/to-dos.reducer';
+import { Task, ListType, } from '../reducers/to-dos.reducer';
 
-export enum ToDoActionTypes {
-    LoadToDos = '[ToDo] Load ToDos',
-    AddToDo = '[ToDo] Add ToDo',
-    ChangeStatusTask = '[ToDo] Change ToDo Status'
-}
+export const SHOW_LIST = '[ToDo] Show Selected List'
+export const ADD_TO_DO = '[ToDo] Add ToDo'
+export const CHANGE_TASK_STATUS = '[ToDo] Change ToDo Status'
 
-export class LoadToDos implements Action {
-    public readonly type = ToDoActionTypes.LoadToDos;
+export class ShowList implements Action {
+    public readonly type = SHOW_LIST;
+
+    constructor(public list: ListType) {}
 }
 
 export class AddToDo implements Action {
-    public readonly type = ToDoActionTypes.AddToDo;
+    public readonly type = ADD_TO_DO;
 
-    constructor(public todo: IncompleteTask) {}
+    constructor(public todo: Task) {}
 }
 
 export class ChangeStatusTask implements Action {
-    public readonly type = ToDoActionTypes.ChangeStatusTask;
+    public readonly type = CHANGE_TASK_STATUS;
 
-    constructor(public todo: List) {}
+    constructor(public todo: Task) {}
 }
   
 
-export type TaskActions = LoadToDos | AddToDo | ChangeStatusTask;
+export type TaskActions = ShowList | AddToDo | ChangeStatusTask;

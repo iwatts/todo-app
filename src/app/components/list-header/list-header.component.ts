@@ -1,5 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { List } from 'app/store/reducers';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-list-header',
@@ -7,10 +6,4 @@ import { List } from 'app/store/reducers';
     styleUrls: ['./list-header.component.scss']
 })
 export class ListHeaderComponent {
-    @Output() public selectedList = new EventEmitter<List>();
-    constructor() { }
-
-    public onSelect(selectedList) {
-        this.selectedList.emit(selectedList);
-    }
 }

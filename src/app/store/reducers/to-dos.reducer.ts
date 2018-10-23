@@ -1,4 +1,4 @@
-import { ToDoActionTypes, ToDoActions } from 'app/store/actions';
+import * as fromActions from 'app/store/actions';
 
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from 'environments/environment.prod';
@@ -13,7 +13,7 @@ export interface ToDoState {
     completeTasks: CompleteTask[];
     incompleteTasks: IncompleteTask[];
     showModal: boolean;
-    activeList: List;
+    activeList: ListType;
 }
 
 export enum TaskLists {
@@ -21,7 +21,7 @@ export enum TaskLists {
     incomplete = 'incomplete'
 }
 
-export type List = keyof typeof TaskLists
+export type ListType = keyof typeof TaskLists
 
 export const initialState: ToDoState = {
     completeTasks: [],
@@ -36,16 +36,16 @@ export const reducers: ActionReducerMap<State> = {
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
 
-export function todoReducer(state = initialState, action: ToDoActions): ToDoState {
+export function todoReducer(state = initialState, action: fromActions.ToDoActions): ToDoState {
     const newState = {... state};
     
 
     switch (action.type) {
-        case ToDoActionTypes.AddToDo:
+        case fromActions.ADD_TO_DO:
             action.todo.id = nextID++;
             newState.incompleteTasks.push(action.todo as IncompleteTask);
             return newState;        
-        case ToDoActionTypes.ChangeStatusTask:
+        case fromActions.CHANGE_TASK_STATUS:
             const {todo} = action
             if (isComplete(todo)) {
                 const index = newState.completeTasks.findIndex(item => item.id === todo.id)
@@ -64,16 +64,20 @@ export function todoReducer(state = initialState, action: ToDoActions): ToDoStat
 }
 
 
+interface TaskBase {
+    id: number,
+    description: any
+}
 
-interface CompleteTask {
+export interface CompleteTask extends TaskBase {
     done: true
 }
 
-interface IncompleteTask {
+export interface IncompleteTask extends TaskBase {
     done: false
 }
 
-type Task = CompleteTask|IncompleteTask
+export type Task = CompleteTask|IncompleteTask
 
 function toggleThing(task: CompleteTask): IncompleteTask
 function toggleThing(task: IncompleteTask): CompleteTask
@@ -90,12 +94,6 @@ function toggleThing(task: Task): Task {
         } as CompleteTask
     }
 }
-
-const myTrueThing: CompleteTask = {
-    done: true as true
-}
-
-const myFalseThing: IncompleteTask = toggleThing(myTrueThing)
 
 export function isComplete(task: Task): task is CompleteTask {
     return task.done

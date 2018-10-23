@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { State } from 'app/store/reducers';
 import { AddToDo } from 'app/store/actions/to-do.actions';
-import { List } from 'app/store/reducers/to-dos.reducer';
+import { Task } from 'app/store/reducers/to-dos.reducer';
 
 @Component({
     selector: 'app-list-modal',
@@ -11,7 +11,7 @@ import { List } from 'app/store/reducers/to-dos.reducer';
     styleUrls: ['./list-modal.component.scss']
 })
 export class ListModalComponent {
-    @Input() public item: List[] = [];
+    @Input() public item: Task[] = [];
     @Output() public closeModal = new EventEmitter;
 
     public inputValue: string;

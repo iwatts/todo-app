@@ -1,5 +1,9 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { TaskLists } from 'app/store/reducers';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { ListType, TaskLists } from 'app/store/reducers';
+import { ShowList } from 'app/store/actions';
+
 
 
 @Component({
@@ -8,13 +12,12 @@ import { TaskLists } from 'app/store/reducers';
     styleUrls: ['./lh-filter.component.scss']
 })
 export class ListHeaderFilterComponent {
-    @Output() public select = new EventEmitter();
-    @Input() public items = [TaskLists.incomplete, TaskLists.completed];
-    public activeList = TaskLists.incomplete;
+    public items = [TaskLists.incomplete, TaskLists.completed];
 
-    public setActive(item) {
-        this.select.emit(item);
-        this.activeList = item;
+    constructor(private store: Store<ListType>) { }
+
+    public onSelect(listName) {
+        this.store.dispatch(new ShowList(listName))
     }
 
 }

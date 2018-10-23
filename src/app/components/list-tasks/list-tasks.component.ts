@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { TaskService, Task } from '../../services/task.service';
+import { Task } from 'app/store/reducers';
+
 
 @Component({
     selector: 'app-list-tasks',
@@ -10,6 +11,6 @@ export class ListTasksComponent {
 
     @Input() public list: Task[];
 
-    constructor(public service: TaskService) {}
+    constructor() {}
 
 }
