@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { debug } from 'util';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { TaskService } from './services/task.service';
+import { Observable } from 'rxjs';
+import { IncompleteTask, CompleteTask, ListType } from './store/reducers/to-dos.reducer';
+import { completeTasks, incompleteTasks, activeList, showModal } from './store/selectors';
+import { ToggleModal } from './store/actions';
 
 @Component({
     selector: 'app-root',
@@ -9,28 +12,21 @@ import { TaskService } from './services/task.service';
     styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
-    activeList = 'To Do';
-    showModal = false;
-
-    constructor(public service: TaskService) {
-
+export class AppComponent {
+    public showModal: Observable<boolean>
+    public selection: Observable<ListType>
+    public completeTasks$: Observable<CompleteTask[]>
+    public incompleteTasks$: Observable<IncompleteTask[]>
+    
+    constructor(public store: Store<any>) {
+        this.completeTasks$ = store.select(completeTasks)
+        this.incompleteTasks$ = store.select(incompleteTasks)
+        this.selection = store.select(activeList)
+        this.showModal = store.select(showModal)
     }
 
-    ngOnInit() {
-
-    }
-
-    getIncompleteTasks() {
-        return this.service.getIncompleteTasks();
-    }
-
-    getCompleteTasks() {
-        return this.service.getCompleteTasks();
-    }
-
-    modalDisplay() {
-        this.showModal = !this.showModal;
+    public modalDisplay() {
+        this.store.dispatch(new ToggleModal());
     }
 
 

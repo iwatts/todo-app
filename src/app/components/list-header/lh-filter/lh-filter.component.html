@@ -1,0 +1,5 @@
+<div class="nav-content">
+    <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab" [class.active]="item == selection" *ngFor="let item of items" (click)="onSelect(item)">{{item}}</li>
+    </ul>
+</div>
