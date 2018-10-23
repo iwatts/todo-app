@@ -23,12 +23,14 @@ export enum TaskLists {
 
 export type ListType = keyof typeof TaskLists
 
+
 export const initialState: ToDoState = {
     completeTasks: [],
     incompleteTasks: [],
     showModal: false,
     activeList: TaskLists.incomplete
 };
+
 
 export const reducers: ActionReducerMap<State> = {
     todos: todoReducer,
@@ -42,9 +44,10 @@ export function todoReducer(state = initialState, action: fromActions.ToDoAction
 
     switch (action.type) {
         case fromActions.ADD_TO_DO:
-            action.todo.id = nextID++;
-            newState.incompleteTasks.push(action.todo as IncompleteTask);
-            return newState;        
+            action.todo.id = nextID++
+            newState.incompleteTasks.push(action.todo as IncompleteTask)
+            return newState
+
         case fromActions.CHANGE_TASK_STATUS:
             const {todo} = action
             if (isComplete(todo)) {
@@ -57,6 +60,16 @@ export function todoReducer(state = initialState, action: fromActions.ToDoAction
                 newState.completeTasks.push(toggleThing(todo))
             }
             return newState;
+
+        case fromActions.SHOW_LIST:
+            const listChoice = action.list
+            newState.activeList = listChoice
+            return newState
+
+        case fromActions.TOGGLE_MODAL:
+            const modalToggle = !newState.showModal
+            newState.showModal = modalToggle
+            return newState
 
         default:
             return state;

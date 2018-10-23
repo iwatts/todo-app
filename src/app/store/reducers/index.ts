@@ -1,2 +1,1 @@
-export * from './to-dos.reducer'
-
+export * from './to-dos.reducer';

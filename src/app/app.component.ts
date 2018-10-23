@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
-import { IncompleteTask, CompleteTask } from './store/reducers/to-dos.reducer';
-import { completeTasks, incompleteTasks } from './store/selectors';
-
+import { IncompleteTask, CompleteTask, ListType } from './store/reducers/to-dos.reducer';
+import { completeTasks, incompleteTasks, activeList, showModal } from './store/selectors';
+import { ToggleModal } from './store/actions';
 
 @Component({
     selector: 'app-root',
@@ -13,17 +13,20 @@ import { completeTasks, incompleteTasks } from './store/selectors';
 })
 
 export class AppComponent {
-    public showModal = false;
-    public completeTasks$: Observable<CompleteTask[]>;
-    public incompleteTasks$: Observable<IncompleteTask[]>;
-
+    public showModal: Observable<boolean>
+    public selection: Observable<ListType>
+    public completeTasks$: Observable<CompleteTask[]>
+    public incompleteTasks$: Observable<IncompleteTask[]>
+    
     constructor(public store: Store<any>) {
-        this.completeTasks$ = store.select(completeTasks);
-        this.incompleteTasks$ = store.select(incompleteTasks);
+        this.completeTasks$ = store.select(completeTasks)
+        this.incompleteTasks$ = store.select(incompleteTasks)
+        this.selection = store.select(activeList)
+        this.showModal = store.select(showModal)
     }
 
     public modalDisplay() {
-        this.showModal = !this.showModal;
+        this.store.dispatch(new ToggleModal());
     }
 
 
